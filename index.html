@@ -24,30 +24,31 @@
             text-align: center;
         }
         .social-links {
-            margin-top: calc(150px + 5vh); /* Zusätzlich 5% der Viewport-Höhe unterhalb von "Schrottkiste" */
+            margin-top: 200px; /* Verschiebt den Container um 200 Pixel nach unten */
+            margin-top: calc(150px + 50px); /* Zusätzlich 50 Pixel unterhalb von "Schrottkiste" */
         }
         .social-links a {
-            margin: 0 1vw; /* Verwende vw (Viewport-Breite) für responsives Design */
+            margin: 0 10px; /* Verwende vw (Viewport-Breite) für responsives Design */
             text-decoration: none;
             color: #000000; /* Schwarz */
-            font-size: 6vw; /* Verwende vw für die Schriftgröße */
+            font-size: 40px; /* Verwende vw für die Schriftgröße */
         }
         .social-links a:hover {
             color: #39FF14; /* Neon-Grün beim Hover */
         }
         h1 {
-            font-size: 8vw; /* Verwende vw für die Schriftgröße */
+            font-size: 50px; /* Verwende vw für die Schriftgröße */
             color: #003366; /* Relativ dunkles Blau für das h1-Element */
         }
         .middle-text {
-            font-size: 12vw; /* Verwende vw für die Schriftgröße */
+            font-size: 60px; /* Verwende vw für die Schriftgröße */
             color: #FFFFFF; /* Weiß für den Text */
-            margin-top: 10vh; /* Verschiebt den Text um 10% der Viewport-Höhe nach unten */
+            margin-top: 150px; /* Verschiebt den Text um 150 Pixel nach unten */
         }
         .play-button {
-            margin-top: 5vh; /* Verwende vh für den Abstand nach oben */
-            padding: 2vh 4vw; /* Verwende vh und vw für das Padding */
-            font-size: 4vw; /* Verwende vw für die Schriftgröße */
+            margin-top: 20px; /* Verwende vh für den Abstand nach oben */
+            padding: 10px 20px; /* Verwende vh und vw für das Padding */
+            font-size: 20px; /* Verwende vw für die Schriftgröße */
             color: #FFFFFF;
             background-color: #003366; /* Dunkles Blau */
             border: none;
@@ -64,16 +65,23 @@
         /* Media Queries für kleinere Bildschirme */
         @media (max-width: 768px) {
             h1 {
-                font-size: 10vw; /* Kleinere Schriftgröße für h1 auf kleinen Bildschirmen */
+                font-size: 8vw; /* Kleinere Schriftgröße für h1 auf kleinen Bildschirmen */
             }
             .middle-text {
-                font-size: 8vw; /* Kleinere Schriftgröße für die Mitteltext auf kleinen Bildschirmen */
+                font-size: 10vw; /* Kleinere Schriftgröße für die Mitteltext auf kleinen Bildschirmen */
             }
             .social-links a {
-                font-size: 5vw; /* Kleinere Schriftgröße für Links auf kleinen Bildschirmen */
+                font-size: 6vw; /* Kleinere Schriftgröße für Links auf kleinen Bildschirmen */
             }
             .play-button {
                 font-size: 5vw; /* Kleinere Schriftgröße für den Button auf kleinen Bildschirmen */
+                padding: 2vh 4vw; /* Anpassung des Paddings auf kleinen Bildschirmen */
+            }
+            .social-links {
+                margin-top: 10vh; /* Anpassung des Abstands auf kleinen Bildschirmen */
+            }
+            .middle-text {
+                margin-top: 5vh; /* Anpassung des Abstands auf kleinen Bildschirmen */
             }
         }
     </style>
@@ -104,3 +112,4 @@
     </script>
 </body>
 </html>
+
