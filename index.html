@@ -18,36 +18,36 @@
             background-position: center; /* Bild zentrieren */
             background-repeat: no-repeat; /* Kein Wiederholen des Bildes */
             overflow: hidden; /* Verhindert Scrollen */
+            text-align: center;
         }
         .container {
             text-align: center;
         }
         .social-links {
-            margin-top: 200px; /* Verschiebt den Container um 200 Pixel nach unten */
-            margin-top: calc(150px + 50px); /* Zusätzlich 50 Pixel unterhalb von "Schrottkiste" */
+            margin-top: calc(150px + 5vh); /* Zusätzlich 5% der Viewport-Höhe unterhalb von "Schrottkiste" */
         }
         .social-links a {
-            margin: 0 10px;
+            margin: 0 1vw; /* Verwende vw (Viewport-Breite) für responsives Design */
             text-decoration: none;
             color: #000000; /* Schwarz */
-            font-size: 40px;
+            font-size: 6vw; /* Verwende vw für die Schriftgröße */
         }
         .social-links a:hover {
             color: #39FF14; /* Neon-Grün beim Hover */
         }
         h1 {
-            font-size: 50px; /* Schriftgröße des h1-Elements ändern */
+            font-size: 8vw; /* Verwende vw für die Schriftgröße */
             color: #003366; /* Relativ dunkles Blau für das h1-Element */
         }
         .middle-text {
-            font-size: 60px; /* Schriftgröße auf 60px ändern */
+            font-size: 12vw; /* Verwende vw für die Schriftgröße */
             color: #FFFFFF; /* Weiß für den Text */
-            margin-top: 150px; /* Verschiebt den Text um 150 Pixel nach unten */
+            margin-top: 10vh; /* Verschiebt den Text um 10% der Viewport-Höhe nach unten */
         }
         .play-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 20px;
+            margin-top: 5vh; /* Verwende vh für den Abstand nach oben */
+            padding: 2vh 4vw; /* Verwende vh und vw für das Padding */
+            font-size: 4vw; /* Verwende vw für die Schriftgröße */
             color: #FFFFFF;
             background-color: #003366; /* Dunkles Blau */
             border: none;
@@ -59,6 +59,22 @@
         }
         audio {
             display: none; /* Audio-Element ausblenden */
+        }
+
+        /* Media Queries für kleinere Bildschirme */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 10vw; /* Kleinere Schriftgröße für h1 auf kleinen Bildschirmen */
+            }
+            .middle-text {
+                font-size: 8vw; /* Kleinere Schriftgröße für die Mitteltext auf kleinen Bildschirmen */
+            }
+            .social-links a {
+                font-size: 5vw; /* Kleinere Schriftgröße für Links auf kleinen Bildschirmen */
+            }
+            .play-button {
+                font-size: 5vw; /* Kleinere Schriftgröße für den Button auf kleinen Bildschirmen */
+            }
         }
     </style>
 </head>
@@ -76,7 +92,7 @@
 
     <!-- Audio-Element zum Abspielen der MP3-Datei -->
     <audio id="audioPlayer">
-        <source src="Chill Gaming_Lofi Mix (1 hour edition)_original (mp3cut.net).mp3" type="audio/mpeg">
+        <source src="your-audio-file.mp3" type="audio/mpeg">
         Ihr Browser unterstützt das Audio-Tag nicht.
     </audio>
 
@@ -88,4 +104,3 @@
     </script>
 </body>
 </html>
-
