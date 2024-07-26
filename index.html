@@ -96,7 +96,7 @@
     </div>
 
     <!-- Button zum Abspielen der MP3-Datei -->
-    <button class="play-button" onclick="playAudio()">Play Audio</button>
+    <button class="play-button" onclick="toggleAudio()">Play Audio</button>
 
     <!-- Audio-Element zum Abspielen der MP3-Datei -->
     <audio id="audioPlayer">
@@ -105,9 +105,13 @@
     </audio>
 
     <script>
-        function playAudio() {
+        function toggleAudio() {
             var audio = document.getElementById('audioPlayer');
-            audio.play();
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
         }
     </script>
 </body>
