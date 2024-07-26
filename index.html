@@ -17,6 +17,7 @@
             background-size: cover; /* Bild an Größe des Bildschirms anpassen */
             background-position: center; /* Bild zentrieren */
             background-repeat: no-repeat; /* Kein Wiederholen des Bildes */
+            overflow: hidden; /* Verhindert Scrollen, damit das Video nicht den Scrollbereich beeinflusst */
         }
         .container {
             text-align: center;
@@ -52,6 +53,7 @@
             height: 100%;
             z-index: -1; /* Stellt sicher, dass das Video hinter anderem Inhalt liegt */
             pointer-events: none; /* Verhindert, dass das Video mit dem Mauszeiger interagiert */
+            opacity: 0; /* Macht das Video unsichtbar */
         }
     </style>
 </head>
