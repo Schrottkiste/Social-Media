@@ -10,7 +10,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             height: 100vh;
             margin: 0;
             background-image: url('channels4_profile.jpg'); /* Bild einfügen */
@@ -20,20 +20,8 @@
             overflow: hidden; /* Verhindert Scrollen */
             text-align: center;
         }
-        .header {
-            width: 100%;
-            text-align: center;
-            background-color: #003366; /* Hintergrundfarbe */
-            color: white; /* Textfarbe */
-            padding: 20px 0; /* Abstand oben und unten */
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
         .container {
             text-align: center;
-            margin-top: 100px; /* Platz für den fixierten Header */
         }
         .social-links {
             margin-top: 200px; /* Verschiebt den Container um 200 Pixel nach unten */
@@ -51,6 +39,11 @@
         h1 {
             font-size: 50px; /* Verwende vw für die Schriftgröße */
             color: #003366; /* Relativ dunkles Blau für das h1-Element */
+        }
+        .welcome-text {
+            font-size: 50px; /* Größe des Willkommenstextes */
+            color: #003366; /* Relativ dunkles Blau für den Willkommenstext */
+            margin-bottom: 20px; /* Abstand nach unten */
         }
         .middle-text {
             font-size: 60px; /* Verwende vw für die Schriftgröße */
@@ -76,6 +69,9 @@
 
         /* Media Queries für kleinere Bildschirme */
         @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 8vw; /* Kleinere Schriftgröße für den Willkommenstext auf kleinen Bildschirmen */
+            }
             h1 {
                 font-size: 8vw; /* Kleinere Schriftgröße für h1 auf kleinen Bildschirmen */
             }
@@ -99,25 +95,24 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Herzlich Willkommen auf meiner Website</h1>
+    <div class="welcome-text">Herzlich Willkommen auf meiner Website</div>
+    <h1>hier findet ihr mich</h1>
+    <div class="middle-text">Schrottkiste</div>
+    <div class="social-links">
+        <a href="https://open.spotify.com/show/47GyrPIA44GYL3nn4VbteE?si=334e0e679fd145d5" target="_blank">Podcast</a>
+        <a href="https://www.tiktok.com/@schrotti1105" target="_blank">TikTok</a>
+        <a href="https://www.instagram.com/schrottkiste_1105?igsh=MTN1d3piMWx3bTMwcQ==" target="_blank">Instagram</a>
     </div>
-    <div class="container">
-        <h1>hier findet ihr mich</h1>
-        <div class="middle-text">Schrottkiste</div>
-        <div class="social-links">
-            <a href="https://open.spotify.com/show/47GyrPIA44GYL3nn4VbteE?si=334e0e679fd145d5" target="_blank">Podcast</a>
-            <a href="https://www.tiktok.com/@schrotti1105" target="_blank">TikTok</a>
-            <a href="https://www.instagram.com/schrottkiste_1105?igsh=MTN1d3piMWx3bTMwcQ==" target="_blank">Instagram</a>
-        </div>
-        <!-- Button zum Abspielen der MP3-Datei -->
-        <button class="play-button" onclick="toggleAudio()">Play Audio</button>
-        <!-- Audio-Element zum Abspielen der MP3-Datei -->
-        <audio id="audioPlayer">
-            <source src="Chill Gaming_Lofi Mix (1 hour edition)_original (mp3cut.net).mp3" type="audio/mpeg">
-            Ihr Browser unterstützt das Audio-Tag nicht.
-        </audio>
-    </div>
+
+    <!-- Button zum Abspielen der MP3-Datei -->
+    <button class="play-button" onclick="toggleAudio()">Play Audio</button>
+
+    <!-- Audio-Element zum Abspielen der MP3-Datei -->
+    <audio id="audioPlayer">
+        <source src="Chill Gaming_Lofi Mix (1 hour edition)_original (mp3cut.net).mp3" type="audio/mpeg">
+        Ihr Browser unterstützt das Audio-Tag nicht.
+    </audio>
+
     <script>
         function toggleAudio() {
             var audio = document.getElementById('audioPlayer');
@@ -130,4 +125,3 @@
     </script>
 </body>
 </html>
-
