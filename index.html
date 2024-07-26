@@ -44,16 +44,9 @@
             color: #FFFFFF; /* Weiß für den Text */
             margin-top: 150px; /* Verschiebt den Text um 150 Pixel nach unten */
         }
-        /* Styling für das eingebettete YouTube-Video */
-        .youtube-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Stellt sicher, dass das Video hinter anderem Inhalt liegt */
-            pointer-events: none; /* Verhindert, dass das Video mit dem Mauszeiger interagiert */
-            opacity: 0; /* Macht das Video unsichtbar */
+        /* Styling für das eingebettete Audio */
+        .audio-background {
+            display: none; /* Verhindert, dass der Audio-Player sichtbar ist */
         }
     </style>
 </head>
@@ -66,7 +59,7 @@
         <a href="https://www.instagram.com/schrottkiste_1105?igsh=MTN1d3piMWx3bTMwcQ==" target="_blank">Instagram</a>
     </div>
 
-    <!-- YouTube-Video als Hintergrundmusik -->
-    <iframe class="youtube-background" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&loop=1&playlist=jfKfPfyJRdk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <!-- Audio als Hintergrundmusik -->
+    <audio class="audio-background" src="https://www.youtube.com/watch?v=jfKfPfyJRdk" autoplay loop></audio>
 </body>
 </html>
