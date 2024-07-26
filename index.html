@@ -17,7 +17,7 @@
             background-size: cover; /* Bild an Größe des Bildschirms anpassen */
             background-position: center; /* Bild zentrieren */
             background-repeat: no-repeat; /* Kein Wiederholen des Bildes */
-            overflow: hidden; /* Verhindert Scrollen, damit das Video nicht den Scrollbereich beeinflusst */
+            overflow: hidden; /* Verhindert Scrollen */
         }
         .container {
             text-align: center;
@@ -44,9 +44,20 @@
             color: #FFFFFF; /* Weiß für den Text */
             margin-top: 150px; /* Verschiebt den Text um 150 Pixel nach unten */
         }
-        /* Styling für das eingebettete Audio */
-        .audio-background {
-            display: none; /* Verhindert, dass der Audio-Player sichtbar ist */
+        /* Styling für den Play-Button */
+        .play-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #1DB954; /* Spotify-Grün */
+            color: #FFFFFF; /* Weißer Text */
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1000; /* Stellt sicher, dass der Button oben liegt */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Schattierung für besseren Kontrast */
         }
     </style>
 </head>
@@ -59,7 +70,7 @@
         <a href="https://www.instagram.com/schrottkiste_1105?igsh=MTN1d3piMWx3bTMwcQ==" target="_blank">Instagram</a>
     </div>
 
-    <!-- Audio als Hintergrundmusik -->
-    <audio class="audio-background" src="https://www.youtube.com/watch?v=jfKfPfyJRdk" autoplay loop></audio>
+    <!-- Play-Button für die Spotify-Playlist -->
+    <button class="play-button" onclick="window.open('https://open.spotify.com/playlist/5AgB32oLMgWOcMrZY32FBm?si=8611c0eab4524133', '_blank')">Play Music</button>
 </body>
 </html>
