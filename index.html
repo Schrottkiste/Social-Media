@@ -14,7 +14,7 @@
             background-position: center;
             background-repeat: no-repeat;
             text-align: center;
-            overflow-x: hidden; /* Verhindert horizontales Scrollen */
+            overflow-x: hidden;
         }
         .section {
             padding: 60px 20px;
@@ -57,7 +57,6 @@
             display: none;
         }
 
-        /* Blog-Stile */
         .news-blog {
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
@@ -74,7 +73,7 @@
             margin: 0;
         }
         .news-blog p {
-            display: none; /* Versteckt den Text in der normalen Ansicht */
+            display: none;
         }
         .timestamp {
             font-size: 14px;
@@ -88,7 +87,6 @@
             right: 10px;
         }
 
-        /* Vollbild-Overlay */
         .overlay {
             display: none;
             position: fixed;
@@ -116,18 +114,6 @@
             cursor: pointer;
         }
 
-        /* Update Timestamp */
-        .update-timestamp {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
         @media (max-width: 768px) {
             .play-button {
                 font-size: 5vw;
@@ -141,7 +127,6 @@
 </head>
 <body>
     <div class="section" id="section1">
-        <!-- Dieser Abschnitt enthält die Startseite Inhalte und Blog-Beiträge -->
         <div class="social-links">
             <a href="https://open.spotify.com/show/47GyrPIA44GYL3nn4VbteE?si=334e0e679fd145d5" target="_blank">Podcast</a>
             <a href="https://www.tiktok.com/@schrotti1105" target="_blank">TikTok</a>
@@ -156,14 +141,11 @@
         <!-- Blog-Beiträge -->
         <div class="news-blog" data-post-id="1" data-timestamp="2024-08-02T10:00:00Z" onclick="openOverlay(this)">
             <h2>Willkommen zum Blog!</h2>
-            <p>Hey Leute, dieser Blog wird euch immer wieder darüber informieren wenn es etwas neues zu erzählen gibt, beispielsweise bezüglich YouTube oder anderen Projekten. 
-            Eigentlich wollte ich für den Blog Part einen zweiten Abschnitt haben, allerdings funktioniert es irgendwie nicht, dass der Blog nur auf der zweiten Seite ist.</p>
             <div class="timestamp"></div>
             <div class="view-count">Ansichten: <span class="view-count-number">0</span></div>
         </div>
         <div class="news-blog" data-post-id="2" data-timestamp="2024-08-02T08:00:00Z" onclick="openOverlay(this)">
             <h2>Neuigkeiten auf YouTube</h2>
-            <p>In Kürze erscheint mal wieder ein geschnittenes Video von mir auf YouTube. Ich bin gespannt wie es ankommt. Falls es sich keiner anguckt, lösche ich es einfach wieder.</p>
             <div class="timestamp"></div>
             <div class="view-count">Ansichten: <span class="view-count-number">0</span></div>
         </div>
@@ -173,11 +155,6 @@
     <div id="overlay" class="overlay">
         <span class="overlay-close" onclick="closeOverlay()">&times;</span>
         <div id="overlay-content" class="overlay-content"></div>
-    </div>
-
-    <!-- Update Timestamp -->
-    <div class="update-timestamp" id="updateTimestamp">
-        Letzte Aktualisierung: 02. August 2024, 11:47
     </div>
 
     <script>
@@ -202,13 +179,16 @@
             var viewCountElem = element.querySelector('.view-count-number');
 
             // Update the view count only when the post is opened
-            viewCountElem.textContent = parseInt(viewCountElem.textContent, 10) + 1;
+            var views = localStorage.getItem('post_' + postId + '_views') || 0;
+            views = parseInt(views, 10) + 1;
+            localStorage.setItem('post_' + postId + '_views', views);
+            viewCountElem.textContent = views;
 
             overlayContent.innerHTML = `
                 <h2>${title}</h2>
                 <p>${content}</p>
                 <div class="timestamp">${timestamp}</div>
-                <div class="view-count">Ansichten: ${viewCountElem.textContent}</div>
+                <div class="view-count">Ansichten: ${views}</div>
             `;
             overlay.style.display = 'block';
         }
@@ -217,14 +197,12 @@
             document.getElementById('overlay').style.display = 'none';
         }
 
-        // Close the overlay when ESC is pressed
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeOverlay();
             }
         });
 
-        // Funktion zur Berechnung der Zeitdifferenz
         function updateTimestamps() {
             var now = new Date();
             var blogPosts = document.querySelectorAll('.news-blog');
@@ -232,8 +210,8 @@
             blogPosts.forEach(function(post) {
                 var timestampElem = post.querySelector('.timestamp');
                 var postTimestamp = new Date(post.getAttribute('data-timestamp'));
-                var diffMs = now - postTimestamp; // Zeitdifferenz in Millisekunden
-                
+                var diffMs = now - postTimestamp;
+
                 var diffMins = Math.floor(diffMs / 60000);
                 var diffHrs = Math.floor(diffMs / 3600000);
                 var diffDays = Math.floor(diffMs / 86400000);
@@ -255,18 +233,19 @@
                     timeString = 'Gerade eben';
                 }
                 
-                timestampElem.innerHTML = `Veröffentlicht: ${timeString}`;
+                timestampElem.innerHTML = timeString;
             });
         }
 
-        // Initiales Update der Zeitstempel
+        // Initial update
         updateTimestamps();
 
-        // Regelmäßiges Update alle 60 Sekunden
-        setInterval(updateTimestamps, 60000);
+        // Update timestamps every minute
+        setInterval(updateTimestamps, 60000); // 60000 ms = 1 minute
     </script>
 </body>
 </html>
+
 
 
 
