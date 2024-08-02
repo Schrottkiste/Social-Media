@@ -15,37 +15,13 @@
             background-repeat: no-repeat;
             text-align: center;
         }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 50px;
-            right: 50px;
-            background-color: #FFDAB9;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-        .nav-link {
-            text-decoration: none;
-            color: black;
-            padding: 10px;
-            transition: background-color 0.3s;
-        }
-        .nav-link.active {
-            background-color: green;
-            color: white;
-        }
         .section {
             padding: 60px 20px;
             width: 100%;
             box-sizing: border-box;
+            min-height: 100vh; /* Sicherstellen, dass die Sektion mindestens die Höhe des Viewports hat */
         }
         #section1 {
-            min-height: 100vh;
-            position: relative;
-            z-index: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -98,9 +74,6 @@
         }
 
         @media (max-width: 768px) {
-            .nav-link {
-                font-size: 4vw; /* Responsive Schriftgröße für Navigationslinks */
-            }
             .play-button {
                 font-size: 5vw;
                 padding: 2vh 4vw;
@@ -112,11 +85,6 @@
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="#section1" class="nav-link" id="link1">Startseite</a>
-        <!-- Die News-Section wurde entfernt, da der Blog nun im Startseiten-Abschnitt enthalten ist -->
-    </div>
-
     <div class="section" id="section1">
         <!-- Dieser Abschnitt enthält die Startseite Inhalte und Blog-Beiträge -->
         <div class="social-links">
@@ -132,14 +100,14 @@
 
         <!-- Blog-Beiträge -->
         <div class="news-blog">
-            <h2>Beitrag 1</h2>
-            <p>Dies ist der erste Beitrag in unserem News-Blog. Hier kannst du deine Nachrichten und Updates schreiben.</p>
+            <h2>Willkommen zum Blog!</h2>
+            <p>Hey Leute, dieser Blog wird euch immer wieder darüber informieren wenn es etwas neues zu erzählen gibt, beispielsweise bezüglich YouTube oder anderen Projekten. 
+            Eigentlich wollte ich für den Blog Part einen zweiten Abschnitt haben, allerdings funktioniert es irgendwie nicht, dass der Blog nur auf der zweiten Seite ist.</p>
         </div>
         <div class="news-blog">
-            <h2>Beitrag 2</h2>
-            <p>Dies ist der zweite Beitrag in unserem News-Blog. Weitere Informationen folgen hier.</p>
+            <h2>Neuigkeiten auf YouTube</h2>
+            <p>In Kürze erscheint mal wieder ein geschnittenes Video von mir auf YouTube. Ich bin gespannt wie es ankommt. Falls es sich keiner anguckt, lösche ich es einfach wieder.</p>
         </div>
-        <!-- Weitere Blogbeiträge können hier hinzugefügt werden -->
     </div>
 
     <script>
@@ -151,37 +119,6 @@
                 audio.pause();
             }
         }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const navLinks = document.querySelectorAll(".nav-link");
-
-            navLinks.forEach(link => {
-                link.addEventListener("click", function() {
-                    navLinks.forEach(link => link.classList.remove("active"));
-                    this.classList.add("active");
-                });
-            });
-
-            window.addEventListener("hashchange", function() {
-                const hash = window.location.hash;
-                navLinks.forEach(link => {
-                    if (link.getAttribute("href") === hash) {
-                        link.classList.add("active");
-                    } else {
-                        link.classList.remove("active");
-                    }
-                });
-            });
-
-            if (window.location.hash) {
-                const initialHash = window.location.hash;
-                navLinks.forEach(link => {
-                    if (link.getAttribute("href") === initialHash) {
-                        link.classList.add("active");
-                    }
-                });
-            }
-        });
     </script>
 </body>
 </html>
