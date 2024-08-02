@@ -242,6 +242,13 @@
 
         // Update timestamps every minute
         setInterval(updateTimestamps, 60000); // 60000 ms = 1 minute
+
+        // Restore view counts from localStorage
+        document.querySelectorAll('.news-blog').forEach(function(post) {
+            var postId = post.getAttribute('data-post-id');
+            var views = localStorage.getItem('post_' + postId + '_views') || 0;
+            post.querySelector('.view-count-number').textContent = views;
+        });
     </script>
 </body>
 </html>
