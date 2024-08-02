@@ -13,96 +13,161 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-image: url('channels4_profile.jpg'); /* Bild einfügen */
-            background-size: cover; /* Bild an Größe des Bildschirms anpassen */
-            background-position: center; /* Bild zentrieren */
-            background-repeat: no-repeat; /* Kein Wiederholen des Bildes */
-            overflow: hidden; /* Verhindert Scrollen */
+            background-image: url('channels4_profile.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
             text-align: center;
         }
         .container {
             text-align: center;
         }
         .social-links {
-            margin-top: 200px; /* Verschiebt den Container um 200 Pixel nach unten */
-            margin-top: calc(150px + 50px); /* Zusätzlich 50 Pixel unterhalb von "Schrottkiste" */
+            margin-top: calc(150px + 50px);
         }
         .social-links a {
-            margin: 0 10px; /* Verwende vw (Viewport-Breite) für responsives Design */
+            margin: 0 10px;
             text-decoration: none;
-            color: #000000; /* Schwarz */
-            font-size: 40px; /* Verwende vw für die Schriftgröße */
+            color: #000000;
+            font-size: 40px;
         }
         .social-links a:hover {
-            color: #39FF14; /* Neon-Grün beim Hover */
+            color: #39FF14;
         }
         h1 {
-            font-size: 50px; /* Verwende vw für die Schriftgröße */
-            color: #003366; /* Relativ dunkles Blau für das h1-Element */
+            font-size: 50px;
+            color: #003366;
         }
         .middle-text {
-            font-size: 60px; /* Verwende vw für die Schriftgröße */
-            color: #FFFFFF; /* Weiß für den Text */
-            margin-top: 150px; /* Verschiebt den Text um 150 Pixel nach unten */
+            font-size: 60px;
+            color: #FFFFFF;
+            margin-top: 150px;
         }
         .play-button {
-            margin-top: 20px; /* Verwende vh für den Abstand nach oben */
-            padding: 10px 20px; /* Verwende vh und vw für das Padding */
-            font-size: 20px; /* Verwende vw für die Schriftgröße */
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
             color: #FFFFFF;
-            background-color: #003366; /* Dunkles Blau */
+            background-color: #003366;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .play-button:hover {
-            background-color: #00509E; /* Hellblau beim Hover */
+            background-color: #00509E;
         }
         audio {
-            display: none; /* Audio-Element ausblenden */
+            display: none;
         }
 
-        /* Media Queries für kleinere Bildschirme */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 50px;
+            right: 50px;
+            background-color: #FFDAB9;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        .nav-link.active {
+            background-color: green;
+            color: white;
+        }
+        .section {
+            padding: 60px 20px;
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #section1 {
+            background-color: transparent;
+        }
+        #section2 {
+            background-color: transparent;
+            overflow-y: auto;
+            max-height: calc(100vh - 70px); /* Adjust height to account for navbar */
+        }
+        .news-blog {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+        }
+        .news-blog h2 {
+            color: #003366;
+        }
+
         @media (max-width: 768px) {
             h1 {
-                font-size: 8vw; /* Kleinere Schriftgröße für h1 auf kleinen Bildschirmen */
+                font-size: 8vw;
             }
             .middle-text {
-                font-size: 10vw; /* Kleinere Schriftgröße für die Mitteltext auf kleinen Bildschirmen */
+                font-size: 10vw;
             }
             .social-links a {
-                font-size: 6vw; /* Kleinere Schriftgröße für Links auf kleinen Bildschirmen */
+                font-size: 6vw;
             }
             .play-button {
-                font-size: 5vw; /* Kleinere Schriftgröße für den Button auf kleinen Bildschirmen */
-                padding: 2vh 4vw; /* Anpassung des Paddings auf kleinen Bildschirmen */
+                font-size: 5vw;
+                padding: 2vh 4vw;
             }
             .social-links {
-                margin-top: 10vh; /* Anpassung des Abstands auf kleinen Bildschirmen */
+                margin-top: 10vh;
             }
             .middle-text {
-                margin-top: 5vh; /* Anpassung des Abstands auf kleinen Bildschirmen */
+                margin-top: 5vh;
             }
         }
     </style>
 </head>
 <body>
-    <h1>hier findet ihr mich</h1>
-    <div class="middle-text">Schrottkiste</div>
-    <div class="social-links">
-        <a href="https://open.spotify.com/show/47GyrPIA44GYL3nn4VbteE?si=334e0e679fd145d5" target="_blank">Podcast</a>
-        <a href="https://www.tiktok.com/@schrotti1105" target="_blank">TikTok</a>
-        <a href="https://www.instagram.com/schrottkiste_1105?igsh=MTN1d3piMWx3bTMwcQ==" target="_blank">Instagram</a>
+    <div class="navbar">
+        <a href="#section1" class="nav-link" id="link1">Abschnitt 1</a>
+        <a href="#section2" class="nav-link" id="link2">Abschnitt 2</a>
     </div>
 
-    <!-- Button zum Abspielen der MP3-Datei -->
-    <button class="play-button" onclick="toggleAudio()">Play Audio</button>
+    <div class="section" id="section1">
+        <h1>hier findet ihr mich</h1>
+        <div class="middle-text">Schrottkiste</div>
+        <div class="social-links">
+            <a href="https://open.spotify.com/show/47GyrPIA44GYL3nn4VbteE?si=334e0e679fd145d5" target="_blank">Podcast</a>
+            <a href="https://www.tiktok.com/@schrotti1105" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/schrottkiste_1105?igsh=MTN1d3piMWx3bTMwcQ==" target="_blank">Instagram</a>
+        </div>
 
-    <!-- Audio-Element zum Abspielen der MP3-Datei -->
-    <audio id="audioPlayer">
-        <source src="Chill Gaming_Lofi Mix (1 hour edition)_original (mp3cut.net).mp3" type="audio/mpeg">
-        Ihr Browser unterstützt das Audio-Tag nicht.
-    </audio>
+        <button class="play-button" onclick="toggleAudio()">Play Audio</button>
+
+        <audio id="audioPlayer">
+            <source src="Chill Gaming_Lofi Mix (1 hour edition)_original (mp3cut.net).mp3" type="audio/mpeg">
+            Ihr Browser unterstützt das Audio-Tag nicht.
+        </audio>
+    </div>
+
+    <div class="section" id="section2">
+        <h1>News Blog</h1>
+        <div class="news-blog">
+            <h2>Beitrag 1</h2>
+            <p>Dies ist der erste Beitrag in unserem News-Blog. Hier kannst du deine Nachrichten und Updates schreiben.</p>
+        </div>
+        <div class="news-blog">
+            <h2>Beitrag 2</h2>
+            <p>Dies ist der zweite Beitrag in unserem News-Blog. Weitere Informationen folgen hier.</p>
+        </div>
+        <!-- Weitere Blogbeiträge können hier hinzugefügt werden -->
+    </div>
 
     <script>
         function toggleAudio() {
@@ -113,7 +178,37 @@
                 audio.pause();
             }
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            navLinks.forEach(link => {
+                link.addEventListener("click", function() {
+                    navLinks.forEach(link => link.classList.remove("active"));
+                    this.classList.add("active");
+                });
+            });
+
+            window.addEventListener("hashchange", function() {
+                const hash = window.location.hash;
+                navLinks.forEach(link => {
+                    if (link.getAttribute("href") === hash) {
+                        link.classList.add("active");
+                    } else {
+                        link.classList.remove("active");
+                    }
+                });
+            });
+
+            if (window.location.hash) {
+                const initialHash = window.location.hash;
+                navLinks.forEach(link => {
+                    if (link.getAttribute("href") === initialHash) {
+                        link.classList.add("active");
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
-
