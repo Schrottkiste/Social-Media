@@ -198,7 +198,7 @@
             var overlayContent = document.getElementById('overlay-content');
 
             var title = element.querySelector('h2').innerHTML;
-            var content = element.querySelector('p').innerHTML || 'Kein Inhalt verfügbar.';
+            var content = 'Hier steht der vollständige Inhalt des Blogbeitrags'; // Dies kann angepasst werden
             var timestamp = element.getAttribute('data-timestamp');
             var timeAgo = getTimeAgo(timestamp);
 
@@ -227,7 +227,7 @@
             const time = new Date(timestamp);
             const seconds = Math.floor((now - time) / 1000);
             const interval = Math.floor(seconds / 60);
-            
+
             if (interval < 1) return 'gerade eben';
             if (interval < 60) return `${interval} Minuten her`;
             if (interval < 1440) return `${Math.floor(interval / 60)} Stunden her`;
@@ -242,12 +242,9 @@
                 document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
                 this.classList.add('active');
                 
-                // Alle Sektionen ausblenden
+                const targetId = this.getAttribute('href').substring(1);
                 document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-                
-                // Die angeklickte Sektion anzeigen
-                const target = document.querySelector(this.getAttribute('href'));
-                target.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
             });
         });
 
@@ -261,6 +258,7 @@
     </script>
 </body>
 </html>
+
 
 
 
