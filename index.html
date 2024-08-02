@@ -236,6 +236,38 @@
                 
                 var diffMins = Math.floor(diffMs / 60000);
                 var diffHrs = Math.floor(diffMs / 3600000);
+                var diffDays = Math.floor(diffMs / 86400000);
+                var diffWeeks = Math.floor(diffDays / 7);
+                var diffYears = Math.floor(diffDays / 365);
+
+                var timeString = '';
+                if (diffYears > 0) {
+                    timeString = `${diffYears} Jahr${diffYears > 1 ? 'e' : ''} her`;
+                } else if (diffWeeks > 0) {
+                    timeString = `${diffWeeks} Woche${diffWeeks > 1 ? 'n' : ''} her`;
+                } else if (diffDays > 0) {
+                    timeString = `${diffDays} Tag${diffDays > 1 ? 'e' : ''} her`;
+                } else if (diffHrs > 0) {
+                    timeString = `${diffHrs} Stunde${diffHrs > 1 ? 'n' : ''} her`;
+                } else if (diffMins > 0) {
+                    timeString = `${diffMins} Minute${diffMins > 1 ? 'n' : ''} her`;
+                } else {
+                    timeString = 'Gerade eben';
+                }
+                
+                timestampElem.innerHTML = `Veröffentlicht: ${timeString}`;
+            });
+        }
+
+        // Initiales Update der Zeitstempel
+        updateTimestamps();
+
+        // Regelmäßiges Update alle 60 Sekunden
+        setInterval(updateTimestamps, 60000);
+    </script>
+</body>
+</html>
+
 
 
 
