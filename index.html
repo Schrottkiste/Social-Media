@@ -175,18 +175,24 @@
             var postId = element.getAttribute('data-post-id');
             var overlay = document.getElementById('overlay');
             var overlayContent = document.getElementById('overlay-content');
-            
+
+            // Check if the post has been viewed
+            if (!localStorage.getItem('post_' + postId + '_viewed')) {
+                // Mark the post as viewed
+                localStorage.setItem('post_' + postId + '_viewed', 'true');
+
+                // Increment view count in localStorage
+                var views = parseInt(localStorage.getItem('post_' + postId + '_views') || '0', 10);
+                views++;
+                localStorage.setItem('post_' + postId + '_views', views);
+            } else {
+                var views = localStorage.getItem('post_' + postId + '_views') || '0';
+            }
+
             // Set the content of the overlay
             var title = element.querySelector('h2').innerHTML;
             var content = element.querySelector('p').innerHTML || 'Kein Inhalt verfügbar.';
             var timestamp = element.querySelector('.timestamp').innerHTML;
-            var viewCountElem = element.querySelector('.view-count-number');
-
-            // Update the view count only when the post is opened
-            var views = localStorage.getItem('post_' + postId + '_views') || 0;
-            views = parseInt(views, 10) + 1;
-            localStorage.setItem('post_' + postId + '_views', views);
-            viewCountElem.textContent = views;
 
             overlayContent.innerHTML = `
                 <h2>${title}</h2>
@@ -215,14 +221,13 @@
                 var timestampElem = post.querySelector('.timestamp');
                 var postTimestamp = new Date(post.getAttribute('data-timestamp'));
                 var diffMs = now - postTimestamp;
-
                 var diffMins = Math.floor(diffMs / 60000);
                 var diffHrs = Math.floor(diffMs / 3600000);
                 var diffDays = Math.floor(diffMs / 86400000);
                 var diffWeeks = Math.floor(diffDays / 7);
                 var diffYears = Math.floor(diffDays / 365);
 
-                var timeString = '';
+                var timeString;
                 if (diffYears > 0) {
                     timeString = `${diffYears} Jahr${diffYears > 1 ? 'e' : ''} her`;
                 } else if (diffWeeks > 0) {
@@ -246,13 +251,6 @@
 
         // Update timestamps every minute
         setInterval(updateTimestamps, 60000);
-
-        // Restore view counts from localStorage
-        document.querySelectorAll('.news-blog').forEach(function(post) {
-            var postId = post.getAttribute('data-post-id');
-            var views = localStorage.getItem('post_' + postId + '_views') || 0;
-            post.querySelector('.view-count-number').textContent = views;
-        });
     </script>
 </body>
 </html>
