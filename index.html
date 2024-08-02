@@ -16,6 +16,28 @@
             text-align: center;
             overflow-x: hidden;
         }
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f0d8c6;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1000;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #003366;
+            font-size: 20px;
+            padding: 10px 20px;
+        }
+        .nav a.active {
+            background-color: #00FF00; /* Grün für den aktiven Abschnitt */
+            color: #fff;
+        }
         .section {
             padding: 60px 20px;
             width: 100%;
@@ -116,6 +138,13 @@
     </style>
 </head>
 <body>
+    <!-- Navigationsleiste -->
+    <div class="nav">
+        <a href="#section1" class="nav-link" id="nav-home">Startseite</a>
+        <a href="#section2" class="nav-link" id="nav-news">News</a>
+    </div>
+
+    <!-- Abschnitt 1: Startseite -->
     <div class="section" id="section1">
         <div class="social-links">
             <a href="https://open.spotify.com/show/47GyrPIA44GYL3nn4VbteE?si=334e0e679fd145d5" target="_blank">Podcast</a>
@@ -127,16 +156,16 @@
             <source src="Chill Gaming_Lofi Mix (1 hour edition)_original (mp3cut.net).mp3" type="audio/mpeg">
             Ihr Browser unterstützt das Audio-Tag nicht.
         </audio>
+    </div>
 
-        <!-- Blog-Beiträge -->
+    <!-- Abschnitt 2: News -->
+    <div class="section" id="section2">
+        <h1>News</h1>
         <div class="news-blog" data-timestamp="2024-08-02T10:00:00Z" onclick="openOverlay(this)">
             <h2>Willkommen zum Blog!</h2>
-            <p>Hey Leute, dieser Blog wird euch immer wieder darüber informieren wenn es etwas neues zu erzählen gibt, beispielsweise bezüglich YouTube oder anderen Projekten. 
-            Eigentlich wollte ich für den Blog Part einen zweiten Abschnitt haben, allerdings funktioniert es irgendwie nicht, dass der Blog nur auf der zweiten Seite ist.</p>
         </div>
         <div class="news-blog" data-timestamp="2024-08-02T08:00:00Z" onclick="openOverlay(this)">
             <h2>Neuigkeiten auf YouTube</h2>
-            <p>In Kürze erscheint mal wieder ein geschnittenes Video von mir auf YouTube. Ich bin gespannt, wie es ankommt. Falls es sich keiner anguckt, lösche ich es einfach wieder.</p>
         </div>
     </div>
 
@@ -168,9 +197,15 @@
             overlayContent.innerHTML = `
                 <h2>${title}</h2>
                 <p>${content}</p>
-                <div class="timestamp">${timeAgo}</div>
+                <p>Veröffentlicht: ${timeAgo}</p>
             `;
             overlay.style.display = 'block';
+
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeOverlay();
+                }
+            });
         }
 
         function closeOverlay() {
@@ -178,42 +213,43 @@
         }
 
         function getTimeAgo(timestamp) {
-            var now = new Date();
-            var postTimestamp = new Date(timestamp);
-            var diffMs = now - postTimestamp;
-            var diffMins = Math.floor(diffMs / 60000);
-            var diffHrs = Math.floor(diffMs / 3600000);
-            var diffDays = Math.floor(diffMs / 86400000);
-            var diffWeeks = Math.floor(diffDays / 7);
-            var diffYears = Math.floor(diffDays / 365);
-
-            var timeString;
-            if (diffYears > 0) {
-                timeString = `${diffYears} Jahr${diffYears > 1 ? 'e' : ''} her`;
-            } else if (diffWeeks > 0) {
-                timeString = `${diffWeeks} Woche${diffWeeks > 1 ? 'n' : ''} her`;
-            } else if (diffDays > 0) {
-                timeString = `${diffDays} Tag${diffDays > 1 ? 'e' : ''} her`;
-            } else if (diffHrs > 0) {
-                timeString = `${diffHrs} Stunde${diffHrs > 1 ? 'n' : ''} her`;
-            } else if (diffMins > 0) {
-                timeString = `${diffMins} Minute${diffMins > 1 ? 'n' : ''} her`;
-            } else {
-                timeString = 'Gerade eben';
-            }
-
-            return timeString;
+            const now = new Date();
+            const time = new Date(timestamp);
+            const seconds = Math.floor((now - time) / 1000);
+            const interval = Math.floor(seconds / 60);
+            
+            if (interval < 1) return 'gerade eben';
+            if (interval < 60) return `${interval} Minuten her`;
+            if (interval < 1440) return `${Math.floor(interval / 60)} Stunden her`;
+            if (interval < 10080) return `${Math.floor(interval / 1440)} Tage her`;
+            if (interval < 40320) return `${Math.floor(interval / 10080)} Wochen her`;
+            return `${Math.floor(interval / 40320)} Jahre her`;
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeOverlay();
-            }
+        // Highlight the current section in the navigation
+        document.addEventListener('scroll', function() {
+            let sections = document.querySelectorAll('.section');
+            let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+            
+            sections.forEach(section => {
+                if (section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
+                    document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
+                    document.querySelector(`.nav a[href="#${section.id}"]`).classList.add('active');
+                }
+            });
+        });
+
+        // Set active class on page load
+        window.addEventListener('load', function() {
+            let hash = window.location.hash || '#section1';
+            document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
+            document.querySelector(`.nav a[href="${hash}"]`).classList.add('active');
+            document.querySelector(hash).scrollIntoView();
         });
     </script>
 </body>
 </html>
-</html>
+
 
 
 
