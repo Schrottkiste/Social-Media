@@ -21,6 +21,7 @@
             width: 100%;
             box-sizing: border-box;
             min-height: 100vh;
+            position: relative;
         }
         #section1 {
             display: flex;
@@ -143,11 +144,14 @@
             <h2>Willkommen zum Blog!</h2>
             <div class="timestamp"></div>
             <div class="view-count">Ansichten: <span class="view-count-number">0</span></div>
+            <p>Hey Leute, dieser Blog wird euch immer wieder darüber informieren wenn es etwas neues zu erzählen gibt, beispielsweise bezüglich YouTube oder anderen Projekten. 
+            Eigentlich wollte ich für den Blog Part einen zweiten Abschnitt haben, allerdings funktioniert es irgendwie nicht, dass der Blog nur auf der zweiten Seite ist.</p>
         </div>
         <div class="news-blog" data-post-id="2" data-timestamp="2024-08-02T08:00:00Z" onclick="openOverlay(this)">
             <h2>Neuigkeiten auf YouTube</h2>
             <div class="timestamp"></div>
             <div class="view-count">Ansichten: <span class="view-count-number">0</span></div>
+            <p>In Kürze erscheint mal wieder ein geschnittenes Video von mir auf YouTube. Ich bin gespannt, wie es ankommt. Falls es sich keiner anguckt, lösche ich es einfach wieder.</p>
         </div>
     </div>
 
@@ -174,7 +178,7 @@
             
             // Set the content of the overlay
             var title = element.querySelector('h2').innerHTML;
-            var content = element.querySelector('p').innerHTML;
+            var content = element.querySelector('p').innerHTML || 'Kein Inhalt verfügbar.';
             var timestamp = element.querySelector('.timestamp').innerHTML;
             var viewCountElem = element.querySelector('.view-count-number');
 
@@ -232,12 +236,12 @@
                 } else {
                     timeString = 'Gerade eben';
                 }
-                
-                timestampElem.innerHTML = timeString;
+
+                timestampElem.textContent = timeString;
             });
         }
 
-        // Initial update
+        // Update timestamps on page load
         updateTimestamps();
 
         // Update timestamps every minute
@@ -252,6 +256,7 @@
     </script>
 </body>
 </html>
+
 
 
 
