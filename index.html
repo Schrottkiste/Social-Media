@@ -154,17 +154,17 @@
         </audio>
 
         <!-- Blog-Beiträge -->
-        <div class="news-blog" data-post-id="1" onclick="openOverlay(this)">
+        <div class="news-blog" data-post-id="1" data-timestamp="2024-08-02T10:00:00Z" onclick="openOverlay(this)">
             <h2>Willkommen zum Blog!</h2>
             <p>Hey Leute, dieser Blog wird euch immer wieder darüber informieren wenn es etwas neues zu erzählen gibt, beispielsweise bezüglich YouTube oder anderen Projekten. 
             Eigentlich wollte ich für den Blog Part einen zweiten Abschnitt haben, allerdings funktioniert es irgendwie nicht, dass der Blog nur auf der zweiten Seite ist.</p>
-            <div class="timestamp">Veröffentlicht am: 02. August 2024</div>
+            <div class="timestamp"></div>
             <div class="view-count">Ansichten: <span class="view-count-number">0</span></div>
         </div>
-        <div class="news-blog" data-post-id="2" onclick="openOverlay(this)">
+        <div class="news-blog" data-post-id="2" data-timestamp="2024-08-02T08:00:00Z" onclick="openOverlay(this)">
             <h2>Neuigkeiten auf YouTube</h2>
             <p>In Kürze erscheint mal wieder ein geschnittenes Video von mir auf YouTube. Ich bin gespannt wie es ankommt. Falls es sich keiner anguckt, lösche ich es einfach wieder.</p>
-            <div class="timestamp">Veröffentlicht am: 01. August 2024</div>
+            <div class="timestamp"></div>
             <div class="view-count">Ansichten: <span class="view-count-number">0</span></div>
         </div>
     </div>
@@ -177,7 +177,7 @@
 
     <!-- Update Timestamp -->
     <div class="update-timestamp" id="updateTimestamp">
-        Letzte Aktualisierung: 02. August 2024
+        Letzte Aktualisierung: 02. August 2024, 11:47
     </div>
 
     <script>
@@ -223,8 +223,17 @@
                 closeOverlay();
             }
         });
-    </script>
-</body>
-</html>
+
+        // Funktion zur Berechnung der Zeitdifferenz
+        function updateTimestamps() {
+            var now = new Date();
+            var blogPosts = document.querySelectorAll('.news-blog');
+
+            blogPosts.forEach(function(post) {
+                var timestampElem = post.querySelector('.timestamp');
+                var postTimestamp = new Date(post.getAttribute('data-timestamp'));
+                var diffMs = now - postTimestamp; // Zeitdifferenz in Millisekunden
+                var diffMins = Math.floor(diffMs
+
 
 
