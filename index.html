@@ -233,7 +233,9 @@
                 var timestampElem = post.querySelector('.timestamp');
                 var postTimestamp = new Date(post.getAttribute('data-timestamp'));
                 var diffMs = now - postTimestamp; // Zeitdifferenz in Millisekunden
-                var diffMins = Math.floor(diffMs
+                
+                var diffMins = Math.floor(diffMs / 60000);
+                var diffHrs = Math.floor(diffMs / 3600000);
 
 
 
