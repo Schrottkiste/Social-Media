@@ -14,12 +14,13 @@
             background-position: center;
             background-repeat: no-repeat;
             text-align: center;
+            overflow-x: hidden; /* Verhindert horizontales Scrollen */
         }
         .section {
             padding: 60px 20px;
             width: 100%;
             box-sizing: border-box;
-            min-height: 100vh; /* Sicherstellen, dass die Sektion mindestens die Höhe des Viewports hat */
+            min-height: 100vh;
         }
         #section1 {
             display: flex;
@@ -115,6 +116,18 @@
             cursor: pointer;
         }
 
+        /* Update Timestamp */
+        .update-timestamp {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
         @media (max-width: 768px) {
             .play-button {
                 font-size: 5vw;
@@ -160,6 +173,11 @@
     <div id="overlay" class="overlay">
         <span class="overlay-close" onclick="closeOverlay()">&times;</span>
         <div id="overlay-content" class="overlay-content"></div>
+    </div>
+
+    <!-- Update Timestamp -->
+    <div class="update-timestamp" id="updateTimestamp">
+        Letzte Aktualisierung: 02. August 2024
     </div>
 
     <script>
@@ -208,5 +226,5 @@
     </script>
 </body>
 </html>
-</html>
+
 
