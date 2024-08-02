@@ -80,12 +80,7 @@
             display: none;
         }
 
-        #section2 {
-            background-color: transparent;
-            padding-top: 70px; /* Für fixierte Navigationsleiste */
-            max-height: calc(100vh - 70px);
-            overflow-y: auto; /* Scrollbar nur für den News-Bereich */
-        }
+        /* Blog-Stile */
         .news-blog {
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
@@ -97,6 +92,9 @@
         }
         .news-blog h2 {
             color: #003366;
+        }
+        .news-blog p {
+            color: #333;
         }
 
         @media (max-width: 768px) {
@@ -116,11 +114,11 @@
 <body>
     <div class="navbar">
         <a href="#section1" class="nav-link" id="link1">Startseite</a>
-        <a href="#section2" class="nav-link" id="link2">News</a>
+        <!-- Die News-Section wurde entfernt, da der Blog nun im Startseiten-Abschnitt enthalten ist -->
     </div>
 
     <div class="section" id="section1">
-        <!-- Dieser Abschnitt enthält nur die Startseite Inhalte -->
+        <!-- Dieser Abschnitt enthält die Startseite Inhalte und Blog-Beiträge -->
         <div class="social-links">
             <a href="https://open.spotify.com/show/47GyrPIA44GYL3nn4VbteE?si=334e0e679fd145d5" target="_blank">Podcast</a>
             <a href="https://www.tiktok.com/@schrotti1105" target="_blank">TikTok</a>
@@ -131,11 +129,8 @@
             <source src="Chill Gaming_Lofi Mix (1 hour edition)_original (mp3cut.net).mp3" type="audio/mpeg">
             Ihr Browser unterstützt das Audio-Tag nicht.
         </audio>
-    </div>
 
-    <div class="section" id="section2">
-        <!-- Dieser Abschnitt enthält nur die News-Blog Inhalte -->
-        <h1>News</h1>
+        <!-- Blog-Beiträge -->
         <div class="news-blog">
             <h2>Beitrag 1</h2>
             <p>Dies ist der erste Beitrag in unserem News-Blog. Hier kannst du deine Nachrichten und Updates schreiben.</p>
@@ -190,3 +185,4 @@
     </script>
 </body>
 </html>
+
